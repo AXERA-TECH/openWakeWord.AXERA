@@ -2,3 +2,4 @@ numpy>=1.26
 onnx>=1.16
 onnxruntime>=1.18
 onnxsim==0.4.36
+edge-tts>=6.1
