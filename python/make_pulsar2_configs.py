@@ -94,9 +94,17 @@ def main() -> None:
                 }
             ]
         else:
+            # timer_v0.1 输出为 2D（[1,7]）Softmax；Pulsar2 7.0 的 AX620E/NPU2
+            # 后端对 FP32 2D Softmax 报 TileFailException，需改用 U16。
+            softmax_dtype = (
+                "U16"
+                if key == "openwakeword__timer_v0.1"
+                and args.target_hardware == "AX620E"
+                else "FP32"
+            )
             layer_configs = [
                 {"op_type": "Pow", "data_type": "U8"},
-                {"op_types": ["Softmax", "ReduceMean"], "data_type": "FP32"},
+                {"op_types": ["Softmax", "ReduceMean"], "data_type": softmax_dtype},
                 {
                     "start_tensor_names": ["DEFAULT"],
                     "end_tensor_names": ["DEFAULT"],
