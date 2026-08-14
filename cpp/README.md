@@ -61,13 +61,6 @@ AUDIO=audio/openwakeword/alexa_test.wav \
 bash cpp/run_openwakeword_ax630c.sh
 ```
 
-批量测试：
-
-```bash
-THRESHOLD=0.5 bash cpp/run_batch_openwakeword_ax650.sh
-THRESHOLD=0.5 bash cpp/run_batch_openwakeword_ax630c.sh
-```
-
 模型目录必须与平台对应：
 
 ```text
